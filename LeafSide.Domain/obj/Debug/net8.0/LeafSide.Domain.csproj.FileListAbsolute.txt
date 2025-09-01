@@ -1,0 +1,11 @@
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\bin\Debug\net8.0\LeafSide.Domain.deps.json
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\bin\Debug\net8.0\LeafSide.Domain.dll
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\bin\Debug\net8.0\LeafSide.Domain.pdb
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.AssemblyInfo.cs
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.dll
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\refint\LeafSide.Domain.dll
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.pdb
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\ref\LeafSide.Domain.dll
