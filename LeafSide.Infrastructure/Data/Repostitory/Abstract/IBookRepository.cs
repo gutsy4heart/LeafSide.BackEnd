@@ -10,7 +10,7 @@ namespace LeafSide.Infrastructure.Data.Repostitory.Abstract;
 public interface IBookRepository
 {
     Task<IEnumerable<Book>> GetAllAsync();
-    Task<Book?> GetByIdAsync(int id);
+    Task<Book?> GetByIdAsync(Guid id);
     Task<Book> AddBookAsync(Book book);
     Task<Book?> UpdateBookAsync(Book book);
     Task<bool> DeleteBookAsync(Guid id);

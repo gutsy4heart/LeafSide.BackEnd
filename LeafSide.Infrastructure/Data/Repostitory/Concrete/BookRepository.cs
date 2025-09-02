@@ -21,7 +21,7 @@ public class BookRepository
         return await _context.Books.AsNoTracking().ToListAsync();
     }
     
-    public async Task<Book?> GetByIdAsync(int id)
+    public async Task<Book?> GetByIdAsync(Guid id)
     {
         return await _context.Books.AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == id);
@@ -46,7 +46,7 @@ public class BookRepository
         return existingBook;
     }
     
-    public async Task<bool> DeleteBookAsync(int id)
+    public async Task<bool> DeleteBookAsync(Guid id)
     {
         var book = await _context.Books
             .FirstOrDefaultAsync(x => x.Id == id);
