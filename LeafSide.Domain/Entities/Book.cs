@@ -10,7 +10,7 @@ namespace LeafSide.Domain.Entities;
 public class Book
 {
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     [Required]
     [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only letters.")]
     public string Title { get; set; } = string.Empty;

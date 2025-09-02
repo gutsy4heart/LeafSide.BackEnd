@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\LeafSide\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|c:\\users\\user\\desktop\\leafside\\leafside.infrastructure\\data\\repostitory\\abstract\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|solutionrelative:leafside.infrastructure\\data\\repostitory\\abstract\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{026AB1E7-C6ED-429A-89FA-6B9C1814FDEE}|LeafSide.Domain\\LeafSide.Domain.csproj|c:\\users\\user\\desktop\\leafside\\leafside.domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{026AB1E7-C6ED-429A-89FA-6B9C1814FDEE}|LeafSide.Domain\\LeafSide.Domain.csproj|solutionrelative:leafside.domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|c:\\users\\user\\desktop\\leafside\\leafside.infrastructure\\data\\repostitory\\concrete\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|solutionrelative:leafside.infrastructure\\data\\repostitory\\concrete\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B8AE5396-1BAF-40DE-BE6B-A24B9E5D9B19}|LeafSide.Application\\LeafSide.Application.csproj|c:\\users\\user\\desktop\\leafside\\leafside.application\\services\\abstract\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8AE5396-1BAF-40DE-BE6B-A24B9E5D9B19}|LeafSide.Application\\LeafSide.Application.csproj|solutionrelative:leafside.application\\services\\abstract\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|c:\\users\\user\\desktop\\leafside\\leafside.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,6 +17,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|c:\\users\\user\\desktop\\leafside\\leafside.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|solutionrelative:leafside.infrastructure\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|c:\\users\\user\\desktop\\leafside\\leafside.infrastructure\\data\\repostitory\\abstract\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|solutionrelative:leafside.infrastructure\\data\\repostitory\\abstract\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|c:\\users\\user\\desktop\\leafside\\leafside.infrastructure\\data\\repostitory\\concrete\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|solutionrelative:leafside.infrastructure\\data\\repostitory\\concrete\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +34,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Domain\\Entities\\Book.cs",
+              "RelativeDocumentMoniker": "LeafSide.Domain\\Entities\\Book.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Domain\\Entities\\Book.cs",
+              "RelativeToolTip": "LeafSide.Domain\\Entities\\Book.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T16:00:08.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IBookService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Application\\Services\\Abstract\\IBookService.cs",
+              "RelativeDocumentMoniker": "LeafSide.Application\\Services\\Abstract\\IBookService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Application\\Services\\Abstract\\IBookService.cs",
+              "RelativeToolTip": "LeafSide.Application\\Services\\Abstract\\IBookService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-01T15:59:18.386Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -36,33 +70,33 @@
               "RelativeDocumentMoniker": "LeafSide.API\\Program.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.API\\Program.cs",
               "RelativeToolTip": "LeafSide.API\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T15:49:11.771Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "BookRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Infrastructure\\Data\\Repostitory\\Concrete\\BookRepository.cs",
               "RelativeDocumentMoniker": "LeafSide.Infrastructure\\Data\\Repostitory\\Concrete\\BookRepository.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Infrastructure\\Data\\Repostitory\\Concrete\\BookRepository.cs",
               "RelativeToolTip": "LeafSide.Infrastructure\\Data\\Repostitory\\Concrete\\BookRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T15:48:42.068Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "IBookRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Infrastructure\\Data\\Repostitory\\Abstract\\IBookRepository.cs",
               "RelativeDocumentMoniker": "LeafSide.Infrastructure\\Data\\Repostitory\\Abstract\\IBookRepository.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Infrastructure\\Data\\Repostitory\\Abstract\\IBookRepository.cs",
               "RelativeToolTip": "LeafSide.Infrastructure\\Data\\Repostitory\\Abstract\\IBookRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T15:48:16.84Z",
               "EditorCaption": ""
@@ -75,7 +109,7 @@
               "RelativeDocumentMoniker": "LeafSide.Infrastructure\\Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Infrastructure\\Data\\AppDbContext.cs",
               "RelativeToolTip": "LeafSide.Infrastructure\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T15:41:41.415Z",
               "EditorCaption": ""
