@@ -1,0 +1,9 @@
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.AssemblyInfo.cs
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\User\Desktop\LeafSide\LeafSide.API\obj\Debug\net8.0\LeafSide.API.sourcelink.json

@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 // DbContext and DI registrations
 builder.Services.AddDbContext<LeafSide.Infrastructure.Data.AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>()
     .AddEntityFrameworkStores<LeafSide.Infrastructure.Data.AppDbContext>()
