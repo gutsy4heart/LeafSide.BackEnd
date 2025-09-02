@@ -9,3 +9,4 @@ C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.
 C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\refint\LeafSide.Domain.dll
 C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.pdb
 C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\ref\LeafSide.Domain.dll
+C:\Users\User\Desktop\LeafSide\LeafSide.Domain\obj\Debug\net8.0\LeafSide.Domain.sourcelink.json

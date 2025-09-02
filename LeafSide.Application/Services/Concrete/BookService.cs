@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LeafSide.Application.Services.Abstract;
 using LeafSide.Domain.Entities;
-using LeafSide.Infrastructure.Data.Repostitory.Abstract;
+using LeafSide.Domain.Repositories;
 
 namespace LeafSide.Application.Services;
 

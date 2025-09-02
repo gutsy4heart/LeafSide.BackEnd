@@ -13,3 +13,4 @@ C:\Users\User\Desktop\LeafSide\LeafSide.Infrastructure\obj\Debug\net8.0\LeafSide
 C:\Users\User\Desktop\LeafSide\LeafSide.Infrastructure\obj\Debug\net8.0\refint\LeafSide.Infrastructure.dll
 C:\Users\User\Desktop\LeafSide\LeafSide.Infrastructure\obj\Debug\net8.0\LeafSide.Infrastructure.pdb
 C:\Users\User\Desktop\LeafSide\LeafSide.Infrastructure\obj\Debug\net8.0\ref\LeafSide.Infrastructure.dll
+C:\Users\User\Desktop\LeafSide\LeafSide.Infrastructure\obj\Debug\net8.0\LeafSide.Infrastructure.sourcelink.json

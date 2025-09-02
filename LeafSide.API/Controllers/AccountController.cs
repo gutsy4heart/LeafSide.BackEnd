@@ -1,7 +1,7 @@
 using LeafSide.Infrastructure.Identity;
 using LeafSide.API.Requests.Account;
 using LeafSide.API.Responses.Account;
-using LeafSide.Application.Services.Abstract;
+using LeafSide.Domain.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,7 +44,7 @@ public class AccountController : ControllerBase
         var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
         if (!passwordValid) return Unauthorized();
         var roles = await _userManager.GetRolesAsync(user);
-        var token = _jwtTokenService.GenerateToken(user, roles);
+        var token = _jwtTokenService.GenerateToken(user.Id.ToString(), user.Email ?? string.Empty, roles);
         return Ok(new LoginResponse { Token = token });
     }
 }

@@ -42,9 +42,9 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddScoped<LeafSide.Infrastructure.Data.Repostitory.Abstract.IBookRepository, LeafSide.Infrastructure.Data.Repostitory.Concrete.BookRepository>();
+builder.Services.AddScoped<LeafSide.Domain.Repositories.IBookRepository, LeafSide.Infrastructure.Data.Repostitory.Concrete.BookRepository>();
 builder.Services.AddScoped<LeafSide.Application.Services.Abstract.IBookService, LeafSide.Application.Services.BookServices>();
-builder.Services.AddScoped<LeafSide.Application.Services.Abstract.IJwtTokenService, LeafSide.Infrastructure.Services.JwtTokenService>();
+builder.Services.AddScoped<LeafSide.Domain.Services.IJwtTokenService, LeafSide.Infrastructure.Services.JwtTokenService>();
 
 var app = builder.Build();
 

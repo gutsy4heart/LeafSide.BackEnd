@@ -1,4 +1,6 @@
 ﻿using LeafSide.Domain.Entities;
+using LeafSide.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LeafSide.Infrastructure.Data.Repostitory.Concrete;
 
-public class BookRepository
+public class BookRepository : IBookRepository
 {
     private readonly AppDbContext _context;
 
