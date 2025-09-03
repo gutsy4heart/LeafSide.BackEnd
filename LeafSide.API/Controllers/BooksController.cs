@@ -19,6 +19,7 @@ public class BooksController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<ActionResult<IEnumerable<BookResponse>>> GetAll()
     {
         var books = await _bookService.GetAllAsync();
@@ -38,6 +39,7 @@ public class BooksController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
+    [AllowAnonymous]
     public async Task<ActionResult<BookResponse>> GetById(Guid id)
     {
         var book = await _bookService.GetByIdAsync(id);
