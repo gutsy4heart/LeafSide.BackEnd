@@ -35,7 +35,7 @@ public class AdminUsersController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<UserResponse>> GetById(Guid id)
+    public async Task<ActionResult<UserResponse>> GetById([FromForm]Guid id)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
         if (user is null) return NotFound();
@@ -44,7 +44,7 @@ public class AdminUsersController : ControllerBase
     }
 
     [HttpPut("{id:guid}/roles")]
-    public async Task<IActionResult> UpdateRoles(Guid id, UpdateUserRolesRequest request)
+    public async Task<IActionResult> UpdateRoles([FromForm]Guid id, [FromForm] UpdateUserRolesRequest request)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
         if (user is null) return NotFound();
@@ -71,7 +71,7 @@ public class AdminUsersController : ControllerBase
     }
 
     [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> Delete([FromForm]Guid id)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
         if (user is null) return NotFound();
