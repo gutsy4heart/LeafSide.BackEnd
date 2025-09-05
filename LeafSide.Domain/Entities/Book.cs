@@ -12,7 +12,6 @@ public class Book
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
     [Required]
-    [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only letters.")]
     public string Title { get; set; } = string.Empty;
     [Required]
     public string Description { get; set; } = string.Empty;

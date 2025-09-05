@@ -4,6 +4,7 @@ using LeafSide.API.Responses.Account;
 using LeafSide.Domain.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LeafSide.API.Controllers;
 
@@ -23,7 +24,8 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequest request)
+    [AllowAnonymous]
+    public async Task<IActionResult> Register([FromForm] RegisterRequest request)
     {
         var user = new AppUser
         {
@@ -37,7 +39,8 @@ public class AccountController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)
+    [AllowAnonymous]
+    public async Task<ActionResult<LoginResponse>> Login([FromForm] LoginRequest request)
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user is null) return Unauthorized();

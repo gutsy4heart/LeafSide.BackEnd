@@ -61,7 +61,7 @@ public class BooksController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<BookResponse>> Create(CreateBookRequest request)
+    public async Task<ActionResult<BookResponse>> Create([FromForm] CreateBookRequest request)
     {
         var toCreate = new Book
         {
@@ -92,7 +92,7 @@ public class BooksController : ControllerBase
 
     [HttpPut("{id:guid}")]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<BookResponse>> Update(Guid id, UpdateBookRequest request)
+    public async Task<ActionResult<BookResponse>> Update([FromRoute] Guid id, [FromForm] UpdateBookRequest request)
     {
         var existing = await _bookService.GetByIdAsync(id);
         if (existing is null) return NotFound();
