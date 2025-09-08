@@ -253,4 +253,3 @@ C:\Users\User\desktop\LeafSide\LeafSide-backend\LeafSide.API\obj\Debug\net8.0\re
 C:\Users\User\desktop\LeafSide\LeafSide-backend\LeafSide.API\obj\Debug\net8.0\LeafSide.API.pdb
 C:\Users\User\desktop\LeafSide\LeafSide-backend\LeafSide.API\obj\Debug\net8.0\LeafSide.API.genruntimeconfig.cache
 C:\Users\User\desktop\LeafSide\LeafSide-backend\LeafSide.API\obj\Debug\net8.0\ref\LeafSide.API.dll
-C:\Users\User\Desktop\LeafSide\LeafSide-backend\LeafSide.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -40,7 +40,7 @@ public class BooksController : ControllerBase
 
     [HttpGet("{id:guid}")]
     [AllowAnonymous]
-    public async Task<ActionResult<BookResponse>> GetById([FromForm]Guid id)
+    public async Task<ActionResult<BookResponse>> GetById([FromRoute] Guid id)
     {
         var book = await _bookService.GetByIdAsync(id);
         if (book is null) return NotFound();
@@ -92,7 +92,7 @@ public class BooksController : ControllerBase
 
     [HttpPut("{id:guid}")]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<BookResponse>> Update([FromForm]Guid id, [FromForm] UpdateBookRequest request)
+    public async Task<ActionResult<BookResponse>> Update([FromRoute] Guid id, [FromForm] UpdateBookRequest request)
     {
         var existing = await _bookService.GetByIdAsync(id);
         if (existing is null) return NotFound();
@@ -123,7 +123,7 @@ public class BooksController : ControllerBase
 
     [HttpDelete("{id:guid}")]
     [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Delete([FromForm]Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
         var deleted = await _bookService.DeleteAsync(id);
         if (!deleted) return NotFound();
