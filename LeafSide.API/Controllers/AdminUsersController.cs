@@ -1,6 +1,7 @@
+using LeafSide.Infrastructure.Identity;
 using LeafSide.API.Requests.Admin;
 using LeafSide.API.Responses.Admin;
-using LeafSide.Infrastructure.Identity;
+using LeafSide.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LeafSide.API.Controllers;
 
 [ApiController]
-[Route("api/admin/users")]
+[Route("api/[controller]")]
 [Authorize(Roles = "Admin")]
 public class AdminUsersController : ControllerBase
 {
@@ -21,64 +22,65 @@ public class AdminUsersController : ControllerBase
         _roleManager = roleManager;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<UserResponse>>> GetAll()
+    [HttpGet("users")]
+    public async Task<ActionResult<List<UserWithRoleResponse>>> GetAllUsers()
     {
         var users = _userManager.Users.ToList();
-        var result = new List<UserResponse>(users.Count);
-        foreach (var u in users)
+        var userResponses = new List<UserWithRoleResponse>();
+
+        foreach (var user in users)
         {
-            var roles = await _userManager.GetRolesAsync(u);
-            result.Add(new UserResponse { Id = u.Id, Email = u.Email ?? string.Empty, Roles = roles });
-        }
-        return Ok(result);
-    }
-
-    [HttpGet("{id:guid}")]
-    public async Task<ActionResult<UserResponse>> GetById([FromForm]Guid id)
-    {
-        var user = await _userManager.FindByIdAsync(id.ToString());
-        if (user is null) return NotFound();
-        var roles = await _userManager.GetRolesAsync(user);
-        return Ok(new UserResponse { Id = user.Id, Email = user.Email ?? string.Empty, Roles = roles });
-    }
-
-    [HttpPut("{id:guid}/roles")]
-    public async Task<IActionResult> UpdateRoles([FromForm]Guid id, [FromForm] UpdateUserRolesRequest request)
-    {
-        var user = await _userManager.FindByIdAsync(id.ToString());
-        if (user is null) return NotFound();
-
-        var current = await _userManager.GetRolesAsync(user);
-        var toRemove = current.Except(request.Roles).ToArray();
-        var toAdd = request.Roles.Except(current).ToArray();
-
-        if (toRemove.Length > 0)
-            await _userManager.RemoveFromRolesAsync(user, toRemove);
-
-        foreach (var role in toAdd)
-        {
-            if (!await _roleManager.RoleExistsAsync(role))
+            var roles = await _userManager.GetRolesAsync(user);
+            userResponses.Add(new UserWithRoleResponse
             {
-                await _roleManager.CreateAsync(new IdentityRole<Guid>(role));
-            }
+                Id = user.Id.ToString(),
+                Email = user.Email ?? string.Empty,
+                UserName = user.UserName ?? string.Empty,
+                Roles = roles.ToList(),
+                CreatedAt = user.Id.ToString().Length > 0 ? DateTime.UtcNow : DateTime.MinValue // Простая заглушка для даты создания
+            });
         }
 
-        if (toAdd.Length > 0)
-            await _userManager.AddToRolesAsync(user, toAdd);
-
-        return NoContent();
+        return Ok(userResponses);
     }
 
-    [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Delete([FromForm]Guid id)
+    [HttpPut("users/{userId}/role")]
+    public async Task<IActionResult> UpdateUserRole(string userId, [FromBody] UpdateUserRoleRequest request)
     {
-        var user = await _userManager.FindByIdAsync(id.ToString());
-        if (user is null) return NotFound();
-        var result = await _userManager.DeleteAsync(user);
-        if (!result.Succeeded) return BadRequest(result.Errors);
-        return NoContent();
+        if (string.IsNullOrEmpty(userId) || !Guid.TryParse(userId, out var userGuid))
+        {
+            return BadRequest("Invalid user ID");
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null)
+        {
+            return NotFound("User not found");
+        }
+
+        // Удаляем все существующие роли
+        var currentRoles = await _userManager.GetRolesAsync(user);
+        if (currentRoles.Any())
+        {
+            await _userManager.RemoveFromRolesAsync(user, currentRoles);
+        }
+
+        // Добавляем новую роль
+        var roleName = request.Role.ToString();
+        var result = await _userManager.AddToRoleAsync(user, roleName);
+
+        if (!result.Succeeded)
+        {
+            return BadRequest(result.Errors);
+        }
+
+        return Ok(new { message = $"User role updated to {roleName}" });
+    }
+
+    [HttpGet("roles")]
+    public ActionResult<List<string>> GetAvailableRoles()
+    {
+        var roles = Enum.GetNames(typeof(UserRole)).ToList();
+        return Ok(roles);
     }
 }
-
-

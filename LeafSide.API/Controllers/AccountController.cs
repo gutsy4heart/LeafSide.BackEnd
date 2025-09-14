@@ -2,6 +2,7 @@ using LeafSide.Infrastructure.Identity;
 using LeafSide.API.Requests.Account;
 using LeafSide.API.Responses.Account;
 using LeafSide.Domain.Services;
+using LeafSide.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -31,10 +32,20 @@ public class AccountController : ControllerBase
         {
             Id = Guid.NewGuid(),
             UserName = request.Email,
-            Email = request.Email
+            Email = request.Email,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            PhoneNumber = request.PhoneNumber,
+            CountryCode = request.CountryCode,
+            Gender = request.Gender,
+            CreatedAt = DateTime.UtcNow
         };
         var result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded) return BadRequest(result.Errors);
+        
+        // Присваиваем роль пользователя по умолчанию
+        await _userManager.AddToRoleAsync(user, UserRole.User.ToString());
+        
         return Ok();
     }
 
@@ -47,7 +58,7 @@ public class AccountController : ControllerBase
         var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
         if (!passwordValid) return Unauthorized();
         var roles = await _userManager.GetRolesAsync(user);
-        var token = _jwtTokenService.GenerateToken(user.Id.ToString(), user.Email ?? string.Empty, roles);
+        var token = _jwtTokenService.GenerateToken(user, roles);
         return Ok(new LoginResponse { Token = token });
     }
 }

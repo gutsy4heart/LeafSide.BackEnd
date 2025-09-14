@@ -53,15 +53,15 @@
   },
   {
     "ContainingType": "LeafSide.API.Controllers.AdminUsersController",
-    "Method": "GetAll",
-    "RelativePath": "api/admin/users",
+    "Method": "GetAvailableRoles",
+    "RelativePath": "api/AdminUsers/roles",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[LeafSide.API.Responses.Admin.UserResponse, LeafSide.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -73,21 +73,15 @@
   },
   {
     "ContainingType": "LeafSide.API.Controllers.AdminUsersController",
-    "Method": "GetById",
-    "RelativePath": "api/admin/users/{id}",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/AdminUsers/users",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
+    "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "LeafSide.API.Responses.Admin.UserResponse",
+        "Type": "System.Collections.Generic.List\u00601[[LeafSide.API.Responses.Admin.UserWithRoleResponse, LeafSide.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -99,36 +93,20 @@
   },
   {
     "ContainingType": "LeafSide.API.Controllers.AdminUsersController",
-    "Method": "Delete",
-    "RelativePath": "api/admin/users/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "LeafSide.API.Controllers.AdminUsersController",
-    "Method": "UpdateRoles",
-    "RelativePath": "api/admin/users/{id}/roles",
+    "Method": "UpdateUserRole",
+    "RelativePath": "api/AdminUsers/users/{userId}/role",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Guid",
+        "Name": "userId",
+        "Type": "System.String",
         "IsRequired": true
       },
       {
         "Name": "request",
-        "Type": "LeafSide.API.Requests.Admin.UpdateUserRolesRequest",
+        "Type": "LeafSide.API.Requests.Admin.UpdateUserRoleRequest",
         "IsRequired": true
       }
     ],

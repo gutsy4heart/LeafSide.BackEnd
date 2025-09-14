@@ -15,10 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendPolicy", policy =>
-        policy.WithOrigins(
-                "http://localhost:3000",
-                "https://localhost:3000"
-            )
+        policy.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
@@ -130,29 +127,38 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// // Seed roles and admin user on startup
-// using (var scope = app.Services.CreateScope())
-// {
-//     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-//     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+// Seed roles and admin user on startup
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
 
-//     var roles = new[] { "Admin", "User" };
-//     foreach (var role in roles)
-//     {
-//         if (!await roleManager.RoleExistsAsync(role))
-//         {
-//             await roleManager.CreateAsync(new IdentityRole<Guid>(role));
-//         }
-//     }
+    var roles = new[] { "Admin", "User" };
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
+        }
+    }
 
-//     var adminEmail = "admin@leafside.local";
-//     var admin = await userManager.FindByEmailAsync(adminEmail);
-//     if (admin is null)
-//     {
-//         admin = new AppUser { Id = Guid.NewGuid(), UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
-//         await userManager.CreateAsync(admin, "Admin12345!");
-//         await userManager.AddToRoleAsync(admin, "Admin");
-//     }
-// }
+    var adminEmail = "admin@leafside.local";
+    var admin = await userManager.FindByEmailAsync(adminEmail);
+    if (admin is null)
+    {
+        admin = new AppUser { Id = Guid.NewGuid(), UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
+        await userManager.CreateAsync(admin, "Admin12345!");
+        await userManager.AddToRoleAsync(admin, "Admin");
+    }
+    else
+    {
+        // Убеждаемся, что существующий админ имеет роль Admin
+        var adminRoles = await userManager.GetRolesAsync(admin);
+        if (!adminRoles.Contains("Admin"))
+        {
+            await userManager.AddToRoleAsync(admin, "Admin");
+        }
+    }
+}
 
 app.Run();

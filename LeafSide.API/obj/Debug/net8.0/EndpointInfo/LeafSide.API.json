@@ -96,7 +96,7 @@
         }
       }
     },
-    "/api/admin/users": {
+    "/api/AdminUsers/users": {
       "get": {
         "tags": [
           "AdminUsers"
@@ -109,7 +109,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserResponse"
+                    "$ref": "#/components/schemas/UserWithRoleResponse"
                   }
                 }
               },
@@ -117,7 +117,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserResponse"
+                    "$ref": "#/components/schemas/UserWithRoleResponse"
                   }
                 }
               },
@@ -125,7 +125,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserResponse"
+                    "$ref": "#/components/schemas/UserWithRoleResponse"
                   }
                 }
               }
@@ -134,80 +134,18 @@
         }
       }
     },
-    "/api/admin/users/{id}": {
-      "get": {
-        "tags": [
-          "AdminUsers"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "AdminUsers"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/admin/users/{id}/roles": {
+    "/api/AdminUsers/users/{userId}/role": {
       "put": {
         "tags": [
           "AdminUsers"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "userId",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "format": "uuid"
+              "type": "string"
             }
           }
         ],
@@ -215,17 +153,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRolesRequest"
+                "$ref": "#/components/schemas/UpdateUserRoleRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRolesRequest"
+                "$ref": "#/components/schemas/UpdateUserRoleRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRolesRequest"
+                "$ref": "#/components/schemas/UpdateUserRoleRequest"
               }
             }
           }
@@ -233,6 +171,44 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AdminUsers/roles": {
+      "get": {
+        "tags": [
+          "AdminUsers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -741,36 +717,52 @@
         },
         "additionalProperties": false
       },
-      "UpdateUserRolesRequest": {
+      "UpdateUserRoleRequest": {
         "type": "object",
         "properties": {
-          "roles": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
+          "userId": {
+            "type": "string",
             "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
           }
         },
         "additionalProperties": false
       },
-      "UserResponse": {
+      "UserRole": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "UserWithRoleResponse": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "format": "uuid"
+            "nullable": true
           },
           "email": {
             "type": "string",
             "nullable": true
           },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
           "roles": {
             "type": "array",
             "items": {
               "type": "string"
             },
             "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

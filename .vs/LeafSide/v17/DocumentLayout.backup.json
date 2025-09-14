@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|solutionrelative:leafside.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.infrastructure\\services\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83BC6521-C074-4709-A3E5-2BB5113A8041}|LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj|solutionrelative:leafside.infrastructure\\services\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|solutionrelative:leafside.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B8AE5396-1BAF-40DE-BE6B-A24B9E5D9B19}|LeafSide.Application\\LeafSide.Application.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.application\\services\\concrete\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8AE5396-1BAF-40DE-BE6B-A24B9E5D9B19}|LeafSide.Application\\LeafSide.Application.csproj|solutionrelative:leafside.application\\services\\concrete\\cartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{026AB1E7-C6ED-429A-89FA-6B9C1814FDEE}|LeafSide.Domain\\LeafSide.Domain.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,24 +41,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "CartService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Application\\Services\\Concrete\\CartService.cs",
+              "RelativeDocumentMoniker": "LeafSide.Application\\Services\\Concrete\\CartService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Application\\Services\\Concrete\\CartService.cs",
+              "RelativeToolTip": "LeafSide.Application\\Services\\Concrete\\CartService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-10T15:36:28.131Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "JwtTokenService.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Infrastructure\\Services\\JwtTokenService.cs",
               "RelativeDocumentMoniker": "LeafSide.Infrastructure\\Services\\JwtTokenService.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Infrastructure\\Services\\JwtTokenService.cs",
               "RelativeToolTip": "LeafSide.Infrastructure\\Services\\JwtTokenService.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T09:33:59.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-05T09:33:59.215Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Domain\\Entities\\Book.cs",
               "RelativeDocumentMoniker": "LeafSide.Domain\\Entities\\Book.cs",
@@ -62,12 +77,11 @@
               "RelativeToolTip": "LeafSide.Domain\\Entities\\Book.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T16:00:08.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T16:00:08.655Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "IBookService.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Application\\Services\\Abstract\\IBookService.cs",
               "RelativeDocumentMoniker": "LeafSide.Application\\Services\\Abstract\\IBookService.cs",
@@ -79,20 +93,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\Program.cs",
               "RelativeDocumentMoniker": "LeafSide.API\\Program.cs",
               "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\Program.cs",
               "RelativeToolTip": "LeafSide.API\\Program.cs",
-              "ViewState": "AgIAAI8AAAAAAAAAAAAAAJgAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAAI8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-01T15:49:11.771Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "BookRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Infrastructure\\Data\\Repostitory\\Concrete\\BookRepository.cs",
               "RelativeDocumentMoniker": "LeafSide.Infrastructure\\Data\\Repostitory\\Concrete\\BookRepository.cs",
@@ -104,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "IBookRepository.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide.Infrastructure\\Data\\Repostitory\\Abstract\\IBookRepository.cs",
               "RelativeDocumentMoniker": "..\\LeafSide.Infrastructure\\Data\\Repostitory\\Abstract\\IBookRepository.cs",
@@ -116,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Infrastructure\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "LeafSide.Infrastructure\\Data\\AppDbContext.cs",
