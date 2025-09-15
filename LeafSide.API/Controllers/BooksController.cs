@@ -33,7 +33,13 @@ public class BooksController : ControllerBase
             Publishing = b.Publishing,
             Created = b.Created,
             ImageUrl = b.ImageUrl,
-            Price = b.Price
+            Price = b.Price,
+            Isbn = b.Isbn,
+            Language = b.Language,
+            PageCount = b.PageCount,
+            IsAvailable = b.IsAvailable,
+            CreatedAt = b.CreatedAt,
+            UpdatedAt = b.UpdatedAt
         });
         return Ok(response);
     }
@@ -54,7 +60,13 @@ public class BooksController : ControllerBase
             Publishing = book.Publishing,
             Created = book.Created,
             ImageUrl = book.ImageUrl,
-            Price = book.Price
+            Price = book.Price,
+            Isbn = book.Isbn,
+            Language = book.Language,
+            PageCount = book.PageCount,
+            IsAvailable = book.IsAvailable,
+            CreatedAt = book.CreatedAt,
+            UpdatedAt = book.UpdatedAt
         };
         return Ok(response);
     }
@@ -72,7 +84,13 @@ public class BooksController : ControllerBase
             Publishing = request.Publishing,
             Created = request.Created,
             ImageUrl = request.ImageUrl,
-            Price = request.Price
+            Price = request.Price,
+            Isbn = request.Isbn ?? string.Empty,
+            Language = request.Language ?? "Russian",
+            PageCount = request.PageCount,
+            IsAvailable = request.IsAvailable,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
         };
         var created = await _bookService.AddAsync(toCreate);
         var response = new BookResponse
@@ -85,7 +103,13 @@ public class BooksController : ControllerBase
             Publishing = created.Publishing,
             Created = created.Created,
             ImageUrl = created.ImageUrl,
-            Price = created.Price
+            Price = created.Price,
+            Isbn = created.Isbn,
+            Language = created.Language,
+            PageCount = created.PageCount,
+            IsAvailable = created.IsAvailable,
+            CreatedAt = created.CreatedAt,
+            UpdatedAt = created.UpdatedAt
         };
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, response);
     }
@@ -104,6 +128,11 @@ public class BooksController : ControllerBase
         existing.Created = request.Created;
         existing.ImageUrl = request.ImageUrl;
         existing.Price = request.Price;
+        existing.Isbn = request.Isbn ?? existing.Isbn;
+        existing.Language = request.Language ?? existing.Language;
+        existing.PageCount = request.PageCount;
+        existing.IsAvailable = request.IsAvailable;
+        existing.UpdatedAt = DateTime.UtcNow;
         var updated = await _bookService.UpdateAsync(existing);
         if (updated is null) return NotFound();
         var response = new BookResponse
@@ -116,7 +145,13 @@ public class BooksController : ControllerBase
             Publishing = updated.Publishing,
             Created = updated.Created,
             ImageUrl = updated.ImageUrl,
-            Price = updated.Price
+            Price = updated.Price,
+            Isbn = updated.Isbn,
+            Language = updated.Language,
+            PageCount = updated.PageCount,
+            IsAvailable = updated.IsAvailable,
+            CreatedAt = updated.CreatedAt,
+            UpdatedAt = updated.UpdatedAt
         };
         return Ok(response);
     }

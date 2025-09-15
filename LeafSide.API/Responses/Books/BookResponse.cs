@@ -11,6 +11,14 @@ public class BookResponse
     public string Created { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = string.Empty;
     public decimal? Price { get; set; }
+    
+    // Новые поля
+    public string Isbn { get; set; } = string.Empty;
+    public string Language { get; set; } = string.Empty;
+    public int PageCount { get; set; }
+    public bool IsAvailable { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
 }
 
 
