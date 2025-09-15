@@ -21,6 +21,21 @@
                   },
                   "Password": {
                     "type": "string"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "PhoneNumber": {
+                    "type": "string"
+                  },
+                  "CountryCode": {
+                    "type": "string"
+                  },
+                  "Gender": {
+                    "type": "string"
                   }
                 }
               },
@@ -29,6 +44,21 @@
                   "style": "form"
                 },
                 "Password": {
+                  "style": "form"
+                },
+                "FirstName": {
+                  "style": "form"
+                },
+                "LastName": {
+                  "style": "form"
+                },
+                "PhoneNumber": {
+                  "style": "form"
+                },
+                "CountryCode": {
+                  "style": "form"
+                },
+                "Gender": {
                   "style": "form"
                 }
               }
@@ -78,20 +108,282 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Account.LoginResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Account.LoginResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Account.LoginResponse"
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/Account/profile": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Account.UserProfileResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Account.UserProfileResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Account.UserProfileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Account/test": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/users/{userId}": {
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AdminBooks/books": {
+      "get": {
+        "tags": [
+          "AdminBooks"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AdminBooks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.CreateBookRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.CreateBookRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.CreateBookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AdminBooks/books/{bookId}": {
+      "get": {
+        "tags": [
+          "AdminBooks"
+        ],
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AdminBooks"
+        ],
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateBookRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateBookRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateBookRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.BookResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AdminBooks"
+        ],
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -109,7 +401,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserWithRoleResponse"
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
                   }
                 }
               },
@@ -117,7 +409,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserWithRoleResponse"
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
                   }
                 }
               },
@@ -125,8 +417,54 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/UserWithRoleResponse"
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
                   }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AdminUsers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.CreateUserRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.CreateUserRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
                 }
               }
             }
@@ -153,17 +491,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRoleRequest"
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateUserRoleRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRoleRequest"
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateUserRoleRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateUserRoleRequest"
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateUserRoleRequest"
               }
             }
           }
@@ -213,6 +551,121 @@
         }
       }
     },
+    "/api/AdminUsers/users/{userId}": {
+      "get": {
+        "tags": [
+          "AdminUsers"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AdminUsers"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateUserRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateUserRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Admin.UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Admin.UserWithRoleResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AdminUsers"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Books": {
       "get": {
         "tags": [
@@ -226,7 +679,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BookResponse"
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                   }
                 }
               },
@@ -234,7 +687,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BookResponse"
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                   }
                 }
               },
@@ -242,7 +695,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/BookResponse"
+                    "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                   }
                 }
               }
@@ -322,17 +775,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               }
             }
@@ -362,17 +815,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               }
             }
@@ -462,17 +915,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Books.BookResponse"
                 }
               }
             }
@@ -512,17 +965,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CartResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Cart.CartResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CartResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Cart.CartResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CartResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Cart.CartResponse"
                 }
               }
             }
@@ -549,17 +1002,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddOrUpdateItemRequest"
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Cart.AddOrUpdateItemRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddOrUpdateItemRequest"
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Cart.AddOrUpdateItemRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddOrUpdateItemRequest"
+                "$ref": "#/components/schemas/LeafSide.API.Requests.Cart.AddOrUpdateItemRequest"
               }
             }
           }
@@ -570,17 +1023,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CartResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Cart.CartResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CartResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Cart.CartResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CartResponse"
+                  "$ref": "#/components/schemas/LeafSide.API.Responses.Cart.CartResponse"
                 }
               }
             }
@@ -614,7 +1067,182 @@
   },
   "components": {
     "schemas": {
-      "AddOrUpdateItemRequest": {
+      "LeafSide.API.Requests.Admin.CreateBookRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isbn": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genre": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "coverImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Requests.Admin.CreateUserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Requests.Admin.UpdateBookRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isbn": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedYear": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "genre": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "coverImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Requests.Admin.UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Requests.Admin.UpdateUserRoleRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/LeafSide.Domain.Enums.UserRole"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Requests.Cart.AddOrUpdateItemRequest": {
         "type": "object",
         "properties": {
           "bookId": {
@@ -628,7 +1256,152 @@
         },
         "additionalProperties": false
       },
-      "BookResponse": {
+      "LeafSide.API.Responses.Account.LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Responses.Account.UserProfileResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Responses.Admin.BookResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "author": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "isbn": {
+            "type": "string",
+            "nullable": true
+          },
+          "publishedYear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "genre": {
+            "type": "string",
+            "nullable": true
+          },
+          "language": {
+            "type": "string",
+            "nullable": true
+          },
+          "pageCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "coverImageUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Responses.Admin.UserWithRoleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LeafSide.API.Responses.Books.BookResponse": {
         "type": "object",
         "properties": {
           "id": {
@@ -671,7 +1444,7 @@
         },
         "additionalProperties": false
       },
-      "CartItemResponse": {
+      "LeafSide.API.Responses.Cart.CartItemResponse": {
         "type": "object",
         "properties": {
           "bookId": {
@@ -690,7 +1463,7 @@
         },
         "additionalProperties": false
       },
-      "CartResponse": {
+      "LeafSide.API.Responses.Cart.CartResponse": {
         "type": "object",
         "properties": {
           "id": {
@@ -700,72 +1473,20 @@
           "items": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CartItemResponse"
+              "$ref": "#/components/schemas/LeafSide.API.Responses.Cart.CartItemResponse"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "LoginResponse": {
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UpdateUserRoleRequest": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "nullable": true
-          },
-          "role": {
-            "$ref": "#/components/schemas/UserRole"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserRole": {
+      "LeafSide.Domain.Enums.UserRole": {
         "enum": [
           0,
           1
         ],
         "type": "integer",
         "format": "int32"
-      },
-      "UserWithRoleResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "userName": {
-            "type": "string",
-            "nullable": true
-          },
-          "roles": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
       }
     },
     "securitySchemes": {

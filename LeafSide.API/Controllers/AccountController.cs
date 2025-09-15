@@ -32,13 +32,7 @@ public class AccountController : ControllerBase
         {
             Id = Guid.NewGuid(),
             UserName = request.Email,
-            Email = request.Email,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            PhoneNumber = request.PhoneNumber,
-            CountryCode = request.CountryCode,
-            Gender = request.Gender,
-            CreatedAt = DateTime.UtcNow
+            Email = request.Email
         };
         var result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded) return BadRequest(result.Errors);
@@ -61,6 +55,96 @@ public class AccountController : ControllerBase
         var token = _jwtTokenService.GenerateToken(user, roles);
         return Ok(new LoginResponse { Token = token });
     }
+
+    [HttpGet("profile")]
+    [Authorize]
+    public async Task<ActionResult<UserProfileResponse>> GetProfile()
+    {
+        try
+        {
+            // Получаем ID пользователя из JWT токена
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            Console.WriteLine($"Profile endpoint: Found NameIdentifier: {userId}");
+            
+            if (string.IsNullOrEmpty(userId))
+            {
+                // Попробуем альтернативный способ получения ID
+                userId = User.FindFirst("sub")?.Value;
+                Console.WriteLine($"Profile endpoint: Found sub claim: {userId}");
+                
+                if (string.IsNullOrEmpty(userId))
+                {
+                    Console.WriteLine("Profile endpoint: No user ID found in token");
+                    return Unauthorized("User ID not found in token");
+                }
+            }
+
+            Console.WriteLine($"Profile endpoint: Looking for user with ID: {userId}");
+            
+            // Проверяем, что ID является валидным GUID
+            if (!Guid.TryParse(userId, out var userGuid))
+            {
+                Console.WriteLine($"Profile endpoint: Invalid GUID format: {userId}");
+                return BadRequest("Invalid user ID format");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null) 
+            {
+                Console.WriteLine($"Profile endpoint: User not found with ID: {userId}");
+                return NotFound("User not found");
+            }
+
+            Console.WriteLine($"Profile endpoint: Found user: {user.Email}");
+
+            var roles = await _userManager.GetRolesAsync(user);
+            Console.WriteLine($"Profile endpoint: User roles: {string.Join(", ", roles)}");
+            
+            var response = new UserProfileResponse
+            {
+                Id = user.Id.ToString(),
+                Email = user.Email ?? string.Empty,
+                FirstName = string.Empty,
+                LastName = string.Empty,
+                PhoneNumber = string.Empty,
+                CountryCode = string.Empty,
+                Gender = string.Empty,
+                Roles = roles.ToList(),
+                CreatedAt = DateTime.UtcNow
+            };
+            
+            Console.WriteLine($"Profile endpoint: Returning response for {response.Email}");
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Profile endpoint: Exception occurred: {ex.Message}");
+            Console.WriteLine($"Profile endpoint: Stack trace: {ex.StackTrace}");
+            return StatusCode(500, new { error = "Internal server error", details = ex.Message });
+        }
+    }
+
+ 
+
+    // [HttpDelete("users/{userId}")]
+    // [Authorize(Roles = "Admin")]
+    // public async Task<IActionResult> DeleteUser(string userId)
+    // {
+    //     try
+    //     {
+    //         var user = await _userManager.FindByIdAsync(userId);
+    //         if (user is null) return NotFound("Пользователь не найден");
+
+    //         var result = await _userManager.DeleteAsync(user);
+    //         if (!result.Succeeded) return BadRequest(result.Errors);
+
+    //         return Ok(new { message = "Пользователь успешно удален" });
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         return StatusCode(500, new { error = "Внутренняя ошибка сервера", details = ex.Message });
+    //     }
+    // }
 }
 
 

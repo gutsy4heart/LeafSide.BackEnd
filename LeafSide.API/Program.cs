@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using LeafSide.Infrastructure.Identity;
 using Microsoft.OpenApi.Models;
+ 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,6 +25,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeafSide API", Version = "v1" });
+    // Use fully-qualified type names to avoid schema ID collisions between
+    // different classes with the same name (e.g., Admin.BookResponse vs Books.BookResponse)
+    c.CustomSchemaIds(type => type.FullName!.Replace("+", "."));
     var securityScheme = new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -50,6 +54,8 @@ builder.Services.AddSwaggerGen(c =>
     };
     c.AddSecurityRequirement(securityRequirement);
 });
+
+// Currency support removed
 builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = new AuthorizationPolicyBuilder()
@@ -107,6 +113,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 
+app.UseRouting();
 app.UseCors("FrontendPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
@@ -114,51 +121,51 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Apply pending EF Core migrations at startup
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<LeafSide.Infrastructure.Data.AppDbContext>();
-    try
-    {
-        db.Database.Migrate();
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Database migration failed: {ex.Message}");
-    }
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var db = scope.ServiceProvider.GetRequiredService<LeafSide.Infrastructure.Data.AppDbContext>();
+//    try
+//    {
+//        db.Database.Migrate();
+//    }
+//    catch (Exception ex)
+//    {
+//        Console.WriteLine($"Database migration failed: {ex.Message}");
+//    }
+//}
 
 // Seed roles and admin user on startup
-using (var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
 
-    var roles = new[] { "Admin", "User" };
-    foreach (var role in roles)
-    {
-        if (!await roleManager.RoleExistsAsync(role))
-        {
-            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
-        }
-    }
+//    var roles = new[] { "Admin", "User" };
+//    foreach (var role in roles)
+//    {
+//        if (!await roleManager.RoleExistsAsync(role))
+//        {
+//            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
+//        }
+//    }
 
-    var adminEmail = "admin@leafside.local";
-    var admin = await userManager.FindByEmailAsync(adminEmail);
-    if (admin is null)
-    {
-        admin = new AppUser { Id = Guid.NewGuid(), UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
-        await userManager.CreateAsync(admin, "Admin12345!");
-        await userManager.AddToRoleAsync(admin, "Admin");
-    }
-    else
-    {
-        // Убеждаемся, что существующий админ имеет роль Admin
-        var adminRoles = await userManager.GetRolesAsync(admin);
-        if (!adminRoles.Contains("Admin"))
-        {
-            await userManager.AddToRoleAsync(admin, "Admin");
-        }
-    }
-}
+//    var adminEmail = "admin@leafside.local";
+//    var admin = await userManager.FindByEmailAsync(adminEmail);
+//    if (admin is null)
+//    {
+//        admin = new AppUser { Id = Guid.NewGuid(), UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
+//        await userManager.CreateAsync(admin, "Admin12345!");
+//        await userManager.AddToRoleAsync(admin, "Admin");
+//    }
+//    else
+//    {
+//        // Убеждаемся, что существующий админ имеет роль Admin
+//        var adminRoles = await userManager.GetRolesAsync(admin);
+//        if (!adminRoles.Contains("Admin"))
+//        {
+//            await userManager.AddToRoleAsync(admin, "Admin");
+//        }
+//    }
+//}
 
 app.Run();

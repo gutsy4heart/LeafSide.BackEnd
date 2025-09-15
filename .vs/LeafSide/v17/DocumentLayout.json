@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|solutionrelative:leafside.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|solutionrelative:leafside.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|solutionrelative:leafside.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6FD88DD0-B03C-46E7-B31A-4806465AC7A7}|LeafSide.API\\LeafSide.API.csproj|solutionrelative:leafside.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{026AB1E7-C6ED-429A-89FA-6B9C1814FDEE}|LeafSide.Domain\\LeafSide.Domain.csproj|c:\\users\\user\\desktop\\leafside\\leafside-backend\\leafside.domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{026AB1E7-C6ED-429A-89FA-6B9C1814FDEE}|LeafSide.Domain\\LeafSide.Domain.csproj|solutionrelative:leafside.domain\\entities\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,6 +35,57 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\Program.cs",
+              "RelativeDocumentMoniker": "LeafSide.API\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\Program.cs",
+              "RelativeToolTip": "LeafSide.API\\Program.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAAAHMAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-15T08:08:37.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "LeafSide.API\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\appsettings.Development.json",
+              "RelativeToolTip": "LeafSide.API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-15T08:07:45.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\appsettings.json",
+              "RelativeDocumentMoniker": "LeafSide.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\appsettings.json",
+              "RelativeToolTip": "LeafSide.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-14T20:27:40.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "LeafSide.API\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.API\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "LeafSide.API\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-14T20:25:43.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Domain\\Entities\\Book.cs",
               "RelativeDocumentMoniker": "LeafSide.Domain\\Entities\\Book.cs",
@@ -26,8 +93,7 @@
               "RelativeToolTip": "LeafSide.Domain\\Entities\\Book.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T16:00:08.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-01T16:00:08.655Z"
             }
           ]
         }

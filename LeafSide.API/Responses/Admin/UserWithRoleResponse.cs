@@ -1,5 +1,3 @@
-using LeafSide.Domain.Enums;
-
 namespace LeafSide.API.Responses.Admin;
 
 public class UserWithRoleResponse
