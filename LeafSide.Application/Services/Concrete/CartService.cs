@@ -25,10 +25,26 @@ public class CartService : ICartService
 
     public async Task<Cart> AddOrUpdateItemAsync(Guid userId, Guid bookId, int quantity)
     {
-        if (quantity < 1) throw new ArgumentOutOfRangeException(nameof(quantity));
+        if (quantity < 1) 
+        {
+            throw new ArgumentOutOfRangeException(nameof(quantity), "Quantity must be greater than 0");
+        }
+        
         var book = await _bookRepository.GetByIdAsync(bookId);
-        if (book is null) throw new InvalidOperationException("Book not found");
-        return await _cartRepository.UpsertItemAsync(userId, bookId, quantity, book.Price);
+        
+        if (book is null) 
+        {
+            throw new InvalidOperationException($"Book with ID {bookId} not found");
+        }
+        
+        if (!book.IsAvailable)
+        {
+            throw new InvalidOperationException($"Book with ID {bookId} is not available");
+        }
+        
+        var result = await _cartRepository.UpsertItemAsync(userId, bookId, quantity, book.Price);
+        
+        return result;
     }
 
     public Task<bool> RemoveItemAsync(Guid userId, Guid bookId)
