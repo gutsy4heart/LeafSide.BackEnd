@@ -40,6 +40,11 @@ public class CartService : ICartService
     {
         return _cartRepository.ClearAsync(userId);
     }
+
+    public async Task<IEnumerable<Cart>> GetAllAsync()
+    {
+        return await _cartRepository.GetAllAsync();
+    }
 }
 
 

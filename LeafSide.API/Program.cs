@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using LeafSide.Infrastructure.Identity;
 using Microsoft.OpenApi.Models;
  
@@ -97,6 +98,8 @@ builder.Services.AddScoped<LeafSide.Application.Services.Abstract.IBookService, 
 builder.Services.AddScoped<LeafSide.Domain.Services.IJwtTokenService, LeafSide.Infrastructure.Services.JwtTokenService>();
 builder.Services.AddScoped<LeafSide.Domain.Repositories.ICartRepository, LeafSide.Infrastructure.Data.Repostitory.Concrete.CartRepository>();
 builder.Services.AddScoped<LeafSide.Application.Services.Abstract.ICartService, LeafSide.Application.Services.CartService>();
+builder.Services.AddScoped<LeafSide.Domain.Repositories.IOrderRepository, LeafSide.Infrastructure.Data.Repostitory.Concrete.OrderRepository>();
+builder.Services.AddScoped<LeafSide.Application.Services.Abstract.IOrderService, LeafSide.Application.Services.OrderService>();
 
 var app = builder.Build();
 
@@ -135,37 +138,37 @@ app.MapControllers();
 //}
 
 // Seed roles and admin user on startup
-//using (var scope = app.Services.CreateScope())
-//{
-//    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
-//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
 
-//    var roles = new[] { "Admin", "User" };
-//    foreach (var role in roles)
-//    {
-//        if (!await roleManager.RoleExistsAsync(role))
-//        {
-//            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
-//        }
-//    }
+    var roles = new[] { "Admin", "User" };
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole<Guid>(role));
+        }
+    }
 
-//    var adminEmail = "admin@leafside.local";
-//    var admin = await userManager.FindByEmailAsync(adminEmail);
-//    if (admin is null)
-//    {
-//        admin = new AppUser { Id = Guid.NewGuid(), UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
-//        await userManager.CreateAsync(admin, "Admin12345!");
-//        await userManager.AddToRoleAsync(admin, "Admin");
-//    }
-//    else
-//    {
-//        // Убеждаемся, что существующий админ имеет роль Admin
-//        var adminRoles = await userManager.GetRolesAsync(admin);
-//        if (!adminRoles.Contains("Admin"))
-//        {
-//            await userManager.AddToRoleAsync(admin, "Admin");
-//        }
-//    }
-//}
+    var adminEmail = "admin@leafside.local";
+    var admin = await userManager.FindByEmailAsync(adminEmail);
+    if (admin is null)
+    {
+        admin = new AppUser { Id = Guid.NewGuid(), UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
+        await userManager.CreateAsync(admin, "Admin12345!");
+        await userManager.AddToRoleAsync(admin, "Admin");
+    }
+    else
+    {
+        // Убеждаемся, что существующий админ имеет роль Admin
+        var adminRoles = await userManager.GetRolesAsync(admin);
+        if (!adminRoles.Contains("Admin"))
+        {
+            await userManager.AddToRoleAsync(admin, "Admin");
+        }
+    }
+}
 
 app.Run();

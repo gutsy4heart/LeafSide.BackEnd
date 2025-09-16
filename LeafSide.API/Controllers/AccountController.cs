@@ -124,7 +124,61 @@ public class AccountController : ControllerBase
         }
     }
 
- 
+    [HttpPut("profile")]
+    [Authorize]
+    public async Task<ActionResult<UserProfileResponse>> UpdateProfile([FromBody] UpdateProfileRequest request)
+    {
+        try
+        {
+            // Получаем ID пользователя из JWT токена
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? User.FindFirst("sub")?.Value;
+            
+            if (string.IsNullOrEmpty(userId) || !Guid.TryParse(userId, out var userGuid))
+            {
+                return Unauthorized("User ID not found in token");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null) 
+            {
+                return NotFound("User not found");
+            }
+
+            // Обновляем поля профиля
+            user.FirstName = request.FirstName ?? user.FirstName;
+            user.LastName = request.LastName ?? user.LastName;
+            user.PhoneNumber = request.PhoneNumber ?? user.PhoneNumber;
+            user.CountryCode = request.CountryCode ?? user.CountryCode;
+            user.Gender = request.Gender ?? user.Gender;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new { errors = result.Errors.Select(e => e.Description) });
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            
+            var response = new UserProfileResponse
+            {
+                Id = user.Id.ToString(),
+                Email = user.Email ?? string.Empty,
+                FirstName = user.FirstName ?? string.Empty,
+                LastName = user.LastName ?? string.Empty,
+                PhoneNumber = user.PhoneNumber ?? string.Empty,
+                CountryCode = user.CountryCode ?? string.Empty,
+                Gender = user.Gender ?? string.Empty,
+                Roles = roles.ToList(),
+                CreatedAt = user.CreatedAt
+            };
+            
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Internal server error", details = ex.Message });
+        }
+    }
 
     // [HttpDelete("users/{userId}")]
     // [Authorize(Roles = "Admin")]
@@ -146,5 +200,4 @@ public class AccountController : ControllerBase
     //     }
     // }
 }
-
 

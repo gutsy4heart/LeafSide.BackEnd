@@ -80,6 +80,14 @@ public class CartRepository : ICartRepository
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<IEnumerable<Cart>> GetAllAsync()
+    {
+        return await _context.Carts
+            .Include(c => c.Items)
+            .ThenInclude(i => i.Book)
+            .ToListAsync();
+    }
 }
 
 

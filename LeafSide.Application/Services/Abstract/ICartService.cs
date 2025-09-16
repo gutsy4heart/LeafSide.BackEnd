@@ -8,6 +8,7 @@ public interface ICartService
     Task<Cart> AddOrUpdateItemAsync(Guid userId, Guid bookId, int quantity);
     Task<bool> RemoveItemAsync(Guid userId, Guid bookId);
     Task<bool> ClearAsync(Guid userId);
+    Task<IEnumerable<Cart>> GetAllAsync();
 }
 
 
