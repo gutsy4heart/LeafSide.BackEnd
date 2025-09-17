@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using LeafSide.Application.Services.Abstract;
 using LeafSide.Domain.Repositories;
+using System.Security.Claims;
 
 namespace LeafSide.API.Controllers;
 
@@ -24,9 +25,22 @@ public class UserStatsController : ControllerBase
     {
         try
         {
+            Console.WriteLine("UserStatsController - GetUserStats called");
+            Console.WriteLine($"UserStatsController - User claims: {string.Join(", ", User.Claims.Select(c => $"{c.Type}={c.Value}"))}");
+            
             var userIdString = User.FindFirst("sub")?.Value;
+            Console.WriteLine($"UserStatsController - User ID from sub claim: {userIdString}");
+            
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                // Попробуем альтернативный способ получения ID
+                userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                Console.WriteLine($"UserStatsController - User ID from NameIdentifier claim: {userIdString}");
+            }
+            
             if (string.IsNullOrEmpty(userIdString) || !Guid.TryParse(userIdString, out var userId))
             {
+                Console.WriteLine("UserStatsController - Invalid user ID");
                 return Unauthorized("Пользователь не найден");
             }
 
@@ -51,6 +65,7 @@ public class UserStatsController : ControllerBase
                 
             };
 
+            Console.WriteLine($"UserStatsController - Returning stats: {System.Text.Json.JsonSerializer.Serialize(stats)}");
             return Ok(stats);
         }
         catch (Exception ex)

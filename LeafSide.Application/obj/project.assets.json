@@ -58,8 +58,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-Backend\\LeafSide.Domain\\LeafSide.Domain.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-Backend\\LeafSide.Domain\\LeafSide.Domain.csproj"
+            "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Domain\\LeafSide.Domain.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\LeafSide\\LeafSide-backend\\LeafSide.Domain\\LeafSide.Domain.csproj"
             }
           }
         }

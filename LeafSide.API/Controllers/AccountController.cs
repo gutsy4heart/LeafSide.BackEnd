@@ -26,7 +26,7 @@ public class AccountController : ControllerBase
 
     [HttpPost("register")]
     [AllowAnonymous]
-    public async Task<IActionResult> Register([FromForm] RegisterRequest request)
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
         var user = new AppUser
         {
@@ -45,7 +45,7 @@ public class AccountController : ControllerBase
 
     [HttpPost("login")]
     [AllowAnonymous]
-    public async Task<ActionResult<LoginResponse>> Login([FromForm] LoginRequest request)
+    public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest request)
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user is null) return Unauthorized();
@@ -104,13 +104,13 @@ public class AccountController : ControllerBase
             {
                 Id = user.Id.ToString(),
                 Email = user.Email ?? string.Empty,
-                FirstName = string.Empty,
-                LastName = string.Empty,
-                PhoneNumber = string.Empty,
-                CountryCode = string.Empty,
-                Gender = string.Empty,
+                FirstName = user.FirstName ?? string.Empty,
+                LastName = user.LastName ?? string.Empty,
+                PhoneNumber = user.PhoneNumber ?? string.Empty,
+                CountryCode = user.CountryCode ?? string.Empty,
+                Gender = user.Gender ?? string.Empty,
                 Roles = roles.ToList(),
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = user.CreatedAt
             };
             
             Console.WriteLine($"Profile endpoint: Returning response for {response.Email}");

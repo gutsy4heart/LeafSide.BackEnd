@@ -125,18 +125,18 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Apply pending EF Core migrations at startup
-//using (var scope = app.Services.CreateScope())
-//{
-//    var db = scope.ServiceProvider.GetRequiredService<LeafSide.Infrastructure.Data.AppDbContext>();
-//    try
-//    {
-//        db.Database.Migrate();
-//    }
-//    catch (Exception ex)
-//    {
-//        Console.WriteLine($"Database migration failed: {ex.Message}");
-//    }
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<LeafSide.Infrastructure.Data.AppDbContext>();
+    try
+    {
+        db.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Database migration failed: {ex.Message}");
+    }
+}
 
 // Seed roles and admin user on startup
 using (var scope = app.Services.CreateScope())
