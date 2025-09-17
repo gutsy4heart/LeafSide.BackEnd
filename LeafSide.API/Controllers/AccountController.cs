@@ -64,41 +64,32 @@ public class AccountController : ControllerBase
         {
             // Получаем ID пользователя из JWT токена
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-            Console.WriteLine($"Profile endpoint: Found NameIdentifier: {userId}");
+
             
             if (string.IsNullOrEmpty(userId))
             {
                 // Попробуем альтернативный способ получения ID
                 userId = User.FindFirst("sub")?.Value;
-                Console.WriteLine($"Profile endpoint: Found sub claim: {userId}");
                 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    Console.WriteLine("Profile endpoint: No user ID found in token");
                     return Unauthorized("User ID not found in token");
                 }
             }
-
-            Console.WriteLine($"Profile endpoint: Looking for user with ID: {userId}");
             
             // Проверяем, что ID является валидным GUID
             if (!Guid.TryParse(userId, out var userGuid))
             {
-                Console.WriteLine($"Profile endpoint: Invalid GUID format: {userId}");
                 return BadRequest("Invalid user ID format");
             }
 
             var user = await _userManager.FindByIdAsync(userId);
             if (user is null) 
             {
-                Console.WriteLine($"Profile endpoint: User not found with ID: {userId}");
                 return NotFound("User not found");
             }
 
-            Console.WriteLine($"Profile endpoint: Found user: {user.Email}");
-
             var roles = await _userManager.GetRolesAsync(user);
-            Console.WriteLine($"Profile endpoint: User roles: {string.Join(", ", roles)}");
             
             var response = new UserProfileResponse
             {
@@ -113,13 +104,10 @@ public class AccountController : ControllerBase
                 CreatedAt = user.CreatedAt
             };
             
-            Console.WriteLine($"Profile endpoint: Returning response for {response.Email}");
             return Ok(response);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Profile endpoint: Exception occurred: {ex.Message}");
-            Console.WriteLine($"Profile endpoint: Stack trace: {ex.StackTrace}");
             return StatusCode(500, new { error = "Internal server error", details = ex.Message });
         }
     }

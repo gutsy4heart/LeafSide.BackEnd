@@ -77,7 +77,6 @@ public class CartRepository : ICartRepository
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CartRepository - ERROR in UpsertItemAsync: {ex.Message}");
             throw;
         }
     }

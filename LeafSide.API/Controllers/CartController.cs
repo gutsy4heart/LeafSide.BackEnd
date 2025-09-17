@@ -31,10 +31,8 @@ public class CartController : ControllerBase
         try
         {
             var userId = GetUserId();
-            Console.WriteLine($"CartController - Get called for userId: {userId}");
             
             var cart = await _cartService.GetOrCreateAsync(userId);
-            Console.WriteLine($"CartController - Cart found with {cart.Items.Count} items");
             
             var response = new CartResponse
             {
@@ -47,12 +45,10 @@ public class CartController : ControllerBase
                 })
             };
             
-            Console.WriteLine($"CartController - Response prepared with {response.Items.Count()} items");
             return Ok(response);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CartController - Get error: {ex.Message}");
             return StatusCode(500, new { error = ex.Message });
         }
     }
@@ -62,13 +58,9 @@ public class CartController : ControllerBase
     {
         try
         {
-            Console.WriteLine($"CartController - AddOrUpdate called with BookId: {request.BookId}, Quantity: {request.Quantity}");
-            
             var userId = GetUserId();
-            Console.WriteLine($"CartController - UserId: {userId}");
             
             var cart = await _cartService.AddOrUpdateItemAsync(userId, request.BookId, request.Quantity);
-            Console.WriteLine($"CartController - Cart updated, Items count: {cart.Items.Count}");
             
             var response = new CartResponse
             {
@@ -81,23 +73,18 @@ public class CartController : ControllerBase
                 })
             };
             
-            Console.WriteLine($"CartController - Response prepared with {response.Items.Count()} items");
             return Ok(response);
         }
         catch (InvalidOperationException ex) when (ex.Message.Contains("Book not found"))
         {
-            Console.WriteLine($"CartController - Book not found: {request.BookId}");
             return NotFound(new { error = "Книга не найдена" });
         }
         catch (ArgumentOutOfRangeException ex) when (ex.ParamName == "quantity")
         {
-            Console.WriteLine($"CartController - Invalid quantity: {request.Quantity}");
             return BadRequest(new { error = "Количество должно быть больше 0" });
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CartController - Error: {ex.Message}");
-            Console.WriteLine($"CartController - Stack trace: {ex.StackTrace}");
             return StatusCode(500, new { error = ex.Message });
         }
     }
