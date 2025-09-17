@@ -180,6 +180,30 @@ public class AccountController : ControllerBase
         }
     }
 
+    [HttpPost("refresh")]
+    [AllowAnonymous]
+    public async Task<ActionResult<RefreshTokenResponse>> RefreshToken([FromBody] RefreshTokenRequest request)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(request.Token))
+            {
+                return BadRequest("Token is required");
+            }
+
+            var newToken = _jwtTokenService.RefreshToken(request.Token);
+            return Ok(new RefreshTokenResponse { Token = newToken });
+        }
+        catch (ArgumentException ex)
+        {
+            return Unauthorized(new { error = "Invalid token", details = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Internal server error", details = ex.Message });
+        }
+    }
+
     // [HttpDelete("users/{userId}")]
     // [Authorize(Roles = "Admin")]
     // public async Task<IActionResult> DeleteUser(string userId)

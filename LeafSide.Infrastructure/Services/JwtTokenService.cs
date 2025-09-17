@@ -73,6 +73,32 @@ public class JwtTokenService : IJwtTokenService
         );
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
+    public string RefreshToken(string token)
+    {
+        try
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadJwtToken(token);
+            
+            // Получаем информацию о пользователе из токена
+            var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub)?.Value;
+            var email = jwtToken.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Email)?.Value;
+            var roles = jwtToken.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value);
+            
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentException("Invalid token");
+            }
+            
+            // Генерируем новый токен с теми же данными
+            return GenerateToken(userId, email, roles);
+        }
+        catch (Exception)
+        {
+            throw new ArgumentException("Invalid token");
+        }
+    }
 }
 
 
