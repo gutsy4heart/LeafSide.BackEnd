@@ -6,9 +6,9 @@ public class OrderResponse
     public Guid UserId { get; set; }
     public string Status { get; set; } = string.Empty;
     public decimal TotalAmount { get; set; }
-    public string ShippingAddress { get; set; } = string.Empty;
-    public string CustomerName { get; set; } = string.Empty;
-    public string CustomerEmail { get; set; } = string.Empty;
+    public string? ShippingAddress { get; set; }
+    public string? CustomerName { get; set; }
+    public string? CustomerEmail { get; set; }
     public string? CustomerPhone { get; set; }
     public string? Notes { get; set; }
     public DateTime CreatedAt { get; set; }

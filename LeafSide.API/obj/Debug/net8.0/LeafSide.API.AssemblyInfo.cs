@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LeafSide.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aaebacefc712ac96e7a0a296054e1196059e9691")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+adc462e44ca8220fc1255dfd05cd30783f9e2c2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("LeafSide.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LeafSide.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
