@@ -37,8 +37,13 @@ public class AdminUsersController : ControllerBase
                 Id = user.Id.ToString(),
                 Email = user.Email ?? string.Empty,
                 UserName = user.UserName ?? string.Empty,
+                FirstName = user.FirstName ?? string.Empty,
+                LastName = user.LastName ?? string.Empty,
+                PhoneNumber = user.PhoneNumber ?? string.Empty,
+                CountryCode = user.CountryCode ?? string.Empty,
+                Gender = user.Gender ?? string.Empty,
                 Roles = roles.ToList(),
-                CreatedAt = user.Id.ToString().Length > 0 ? DateTime.UtcNow : DateTime.MinValue // Простая заглушка для даты создания
+                CreatedAt = user.CreatedAt
             });
         }
 
@@ -105,8 +110,13 @@ public class AdminUsersController : ControllerBase
             Id = user.Id.ToString(),
             Email = user.Email ?? string.Empty,
             UserName = user.UserName ?? string.Empty,
+            FirstName = user.FirstName ?? string.Empty,
+            LastName = user.LastName ?? string.Empty,
+            PhoneNumber = user.PhoneNumber ?? string.Empty,
+            CountryCode = user.CountryCode ?? string.Empty,
+            Gender = user.Gender ?? string.Empty,
             Roles = roles.ToList(),
-            CreatedAt = user.Id.ToString().Length > 0 ? DateTime.UtcNow : DateTime.MinValue
+            CreatedAt = user.CreatedAt
         };
 
         return Ok(userResponse);
@@ -146,7 +156,13 @@ public class AdminUsersController : ControllerBase
             Id = Guid.NewGuid(),
             UserName = request.Email,
             Email = request.Email,
-            EmailConfirmed = true
+            EmailConfirmed = true,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            PhoneNumber = request.PhoneNumber ?? string.Empty,
+            CountryCode = request.CountryCode ?? string.Empty,
+            Gender = request.Gender ?? string.Empty,
+            CreatedAt = DateTime.UtcNow
         };
 
         var result = await _userManager.CreateAsync(user, request.Password);
@@ -164,6 +180,11 @@ public class AdminUsersController : ControllerBase
             Id = user.Id.ToString(),
             Email = user.Email ?? string.Empty,
             UserName = user.UserName ?? string.Empty,
+            FirstName = user.FirstName ?? string.Empty,
+            LastName = user.LastName ?? string.Empty,
+            PhoneNumber = user.PhoneNumber ?? string.Empty,
+            CountryCode = user.CountryCode ?? string.Empty,
+            Gender = user.Gender ?? string.Empty,
             Roles = roles.ToList(),
             CreatedAt = user.CreatedAt
         };

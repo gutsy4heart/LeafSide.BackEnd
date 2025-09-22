@@ -32,7 +32,13 @@ public class AccountController : ControllerBase
         {
             Id = Guid.NewGuid(),
             UserName = request.Email,
-            Email = request.Email
+            Email = request.Email,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            PhoneNumber = request.PhoneNumber,
+            CountryCode = request.CountryCode,
+            Gender = request.Gender,
+            CreatedAt = DateTime.UtcNow
         };
         var result = await _userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded) return BadRequest(result.Errors);
