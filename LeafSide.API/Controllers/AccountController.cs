@@ -61,7 +61,9 @@ public class AccountController : ControllerBase
         var token = _jwtTokenService.GenerateToken(user, roles);
         return Ok(new LoginResponse { Token = token });
     }
-
+    /// <summary>
+    /// Класс для работы с англо-русским и русско-английским словарем стран
+    /// </summary>
     [HttpGet("profile")]
     [Authorize]
     public async Task<ActionResult<UserProfileResponse>> GetProfile()
