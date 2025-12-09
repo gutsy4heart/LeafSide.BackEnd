@@ -11,16 +11,34 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.SuppressInferBindingSourcesForParameters = false;
+    });
 
-builder.Services.AddControllers();
+// Configure routing to be case-insensitive for mobile compatibility
+builder.Services.Configure<Microsoft.AspNetCore.Routing.RouteOptions>(options =>
+{
+    options.LowercaseUrls = false;
+    options.LowercaseQueryStrings = false;
+});
 // CORS
 builder.Services.AddCors(options =>
 {
+    // Policy for web frontend
     options.AddPolicy("FrontendPolicy", policy =>
         policy.WithOrigins("http://localhost:3000", "https://localhost:3000")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials());
+    
+    // Policy for mobile apps (allows all origins for mobile development)
+    options.AddPolicy("MobilePolicy", policy =>
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -118,7 +136,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
-app.UseCors("FrontendPolicy");
+// Use MobilePolicy for mobile apps (allows all origins), FrontendPolicy for web
+// MobilePolicy is more permissive for development with mobile devices
+//app.UseCors("FrontendPolicy");
+app.UseCors("MobilePolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 

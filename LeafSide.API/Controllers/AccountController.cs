@@ -176,6 +176,63 @@ public class AccountController : ControllerBase
         }
     }
 
+    [HttpPost("change-password")]
+    [Authorize]
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request)
+    {
+        try
+        {
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ?? User.FindFirst("sub")?.Value;
+            
+            if (string.IsNullOrEmpty(userId) || !Guid.TryParse(userId, out var userGuid))
+            {
+                return Unauthorized("User ID not found in token");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+            {
+                return NotFound("User not found");
+            }
+
+            // Валидация
+            if (string.IsNullOrEmpty(request.CurrentPassword) || string.IsNullOrEmpty(request.NewPassword))
+            {
+                return BadRequest(new { error = "Current password and new password are required" });
+            }
+
+            if (request.NewPassword != request.ConfirmPassword)
+            {
+                return BadRequest(new { error = "New password and confirmation password do not match" });
+            }
+
+            if (request.NewPassword.Length < 6)
+            {
+                return BadRequest(new { error = "New password must be at least 6 characters long" });
+            }
+
+            // Проверяем текущий пароль
+            var isCurrentPasswordValid = await _userManager.CheckPasswordAsync(user, request.CurrentPassword);
+            if (!isCurrentPasswordValid)
+            {
+                return BadRequest(new { error = "Current password is incorrect" });
+            }
+
+            // Меняем пароль
+            var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new { errors = result.Errors.Select(e => e.Description) });
+            }
+
+            return Ok(new { message = "Password changed successfully" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Internal server error", details = ex.Message });
+        }
+    }
+
     [HttpPost("refresh")]
     [AllowAnonymous]
     public async Task<ActionResult<RefreshTokenResponse>> RefreshToken([FromBody] RefreshTokenRequest request)
