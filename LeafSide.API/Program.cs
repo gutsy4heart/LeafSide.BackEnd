@@ -11,7 +11,7 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// builder.Services.AddControllers();
+builder.Services.AddControllers();
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -138,7 +138,7 @@ if (!app.Environment.IsDevelopment())
 app.UseRouting();
 // Use MobilePolicy for mobile apps (allows all origins), FrontendPolicy for web
 // MobilePolicy is more permissive for development with mobile devices
-//app.UseCors("FrontendPolicy");
+app.UseCors("FrontendPolicy");
 app.UseCors("MobilePolicy");
 app.UseAuthentication();
 app.UseAuthorization();
