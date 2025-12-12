@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 namespace LeafSide.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/admin/users")]
 [Authorize(Roles = "Admin")]
 public class AdminStatsController : ControllerBase
 {
@@ -26,6 +26,50 @@ public class AdminStatsController : ControllerBase
         _bookRepository = bookRepository;
         _cartRepository = cartRepository;
         _userManager = userManager;
+    }
+
+    [HttpGet("stats")]
+    public async Task<IActionResult> GetUserStats()
+    {
+        try
+        {
+            var now = DateTime.UtcNow;
+            var weekAgo = now.AddDays(-7);
+
+            // Подсчет пользователей
+            var allUsers = _userManager.Users.ToList();
+            var totalUsers = allUsers.Count;
+            
+            // Подсчет админов и обычных пользователей
+            var adminUsers = 0;
+            var regularUsers = 0;
+            
+            foreach (var user in allUsers)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                if (roles.Contains("Admin"))
+                    adminUsers++;
+                else
+                    regularUsers++;
+            }
+
+            // Недавние пользователи (за последние 7 дней)
+            var recentUsers = allUsers.Count(u => u.CreatedAt >= weekAgo);
+
+            var stats = new
+            {
+                totalUsers,
+                adminUsers,
+                regularUsers,
+                recentUsers
+            };
+
+            return Ok(stats);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = "Internal server error", details = ex.Message });
+        }
     }
 
     [HttpGet("dashboard")]

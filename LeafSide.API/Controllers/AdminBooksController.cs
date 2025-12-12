@@ -8,11 +8,12 @@ using System.Linq;
 namespace LeafSide.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/admin")]
 [Authorize(Roles = "Admin")]
 public class AdminBooksController : ControllerBase
 {
-    private static readonly List<BookResponse> _books;
+    private static readonly List<BookResponse> _books = new();
+    
     [HttpGet("books")]
     public ActionResult<List<BookResponse>> GetAllBooks()
     {

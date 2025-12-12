@@ -10,7 +10,7 @@ using System.Linq;
 namespace LeafSide.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/admin")]
 [Authorize(Roles = "Admin")]
 public class AdminUsersController : ControllerBase
 {
