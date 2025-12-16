@@ -13,11 +13,13 @@ public class UserStatsController : ControllerBase
 {
     private readonly IOrderRepository _orderRepository;
     private readonly ICartRepository _cartRepository;
+    private readonly IFavoriteService _favoriteService;
 
-    public UserStatsController(IOrderRepository orderRepository, ICartRepository cartRepository)
+    public UserStatsController(IOrderRepository orderRepository, ICartRepository cartRepository, IFavoriteService favoriteService)
     {
         _orderRepository = orderRepository;
         _cartRepository = cartRepository;
+        _favoriteService = favoriteService;
     }
 
     [HttpGet("stats")]
@@ -47,8 +49,8 @@ public class UserStatsController : ControllerBase
             var cart = await _cartRepository.GetByUserIdAsync(userId);
             var itemsInCart = cart?.Items?.Count ?? 0;
 
-            // TODO: Добавить избранное когда будет реализовано
-            var favoritesCount = 0;
+            // Получаем количество избранных книг
+            var favoritesCount = await _favoriteService.GetCountByUserIdAsync(userId);
 
             var stats = new
             {
