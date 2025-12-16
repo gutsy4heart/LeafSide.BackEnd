@@ -121,6 +121,8 @@ builder.Services.AddScoped<LeafSide.Domain.Repositories.IOrderRepository, LeafSi
 builder.Services.AddScoped<LeafSide.Application.Services.Abstract.IOrderService, LeafSide.Application.Services.OrderService>();
 builder.Services.AddScoped<LeafSide.Domain.Repositories.IFavoriteRepository, LeafSide.Infrastructure.Data.Repostitory.Concrete.FavoriteRepository>();
 builder.Services.AddScoped<LeafSide.Application.Services.Abstract.IFavoriteService, LeafSide.Application.Services.FavoriteService>();
+builder.Services.AddScoped<LeafSide.Domain.Repositories.IReviewRepository, LeafSide.Infrastructure.Data.Repostitory.Concrete.ReviewRepository>();
+builder.Services.AddScoped<LeafSide.Application.Services.Abstract.IReviewService, LeafSide.Application.Services.ReviewService>();
 
 var app = builder.Build();
 
