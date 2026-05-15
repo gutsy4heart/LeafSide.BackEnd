@@ -9,7 +9,7 @@ public interface IOrderService
     Task<IEnumerable<Order>> GetAllAsync();
     Task<IEnumerable<Order>> GetByUserIdAsync(Guid userId);
     Task<Order> CreateFromCartAsync(Guid userId, string shippingAddress, string customerName, string customerEmail, string? customerPhone = null, string? notes = null);
-    Task<Order> CreateOrderAsync(Guid userId, List<OrderItemRequest> items, decimal totalAmount);
+    Task<Order> CreateOrderAsync(Guid userId, List<OrderItemRequest> items, decimal totalAmount, string shippingAddress, string customerName, string customerEmail, string? customerPhone = null, string? notes = null);
     Task<IEnumerable<Order>> GetUserOrdersAsync(Guid userId);
     Task<Order?> GetUserOrderAsync(Guid userId, Guid orderId);
     Task<Order?> ConfirmDeliveryAsync(Guid userId, Guid orderId);

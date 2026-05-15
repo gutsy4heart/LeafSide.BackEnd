@@ -42,7 +42,15 @@ public class OrdersController : ControllerBase
             }).ToList();
 
             // Создаем заказ
-            var order = await _orderService.CreateOrderAsync(userId, orderItems, request.TotalAmount);
+            var order = await _orderService.CreateOrderAsync(
+                userId,
+                orderItems,
+                request.TotalAmount,
+                request.ShippingAddress,
+                request.CustomerName,
+                request.CustomerEmail,
+                request.CustomerPhone,
+                request.Notes);
 
             var response = new OrderResponse
             {

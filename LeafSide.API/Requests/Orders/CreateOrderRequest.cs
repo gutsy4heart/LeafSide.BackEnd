@@ -10,6 +10,20 @@ public class CreateOrderRequest
     [Required]
     [Range(0.01, double.MaxValue, ErrorMessage = "Сумма заказа должна быть больше 0")]
     public decimal TotalAmount { get; set; }
+
+    [Required(ErrorMessage = "Имя клиента обязательно")]
+    public string CustomerName { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Email клиента обязателен")]
+    [EmailAddress(ErrorMessage = "Некорректный email")]
+    public string CustomerEmail { get; set; } = string.Empty;
+
+    public string? CustomerPhone { get; set; }
+
+    [Required(ErrorMessage = "Адрес доставки обязателен")]
+    public string ShippingAddress { get; set; } = string.Empty;
+
+    public string? Notes { get; set; }
 }
 
 public class OrderItemRequest

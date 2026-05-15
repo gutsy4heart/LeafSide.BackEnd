@@ -89,7 +89,15 @@ public class OrderService : IOrderService
         return await _orderRepository.CreateAsync(order);
     }
 
-    public async Task<Order> CreateOrderAsync(Guid userId, List<OrderItemRequest> items, decimal totalAmount)
+    public async Task<Order> CreateOrderAsync(
+        Guid userId,
+        List<OrderItemRequest> items,
+        decimal totalAmount,
+        string shippingAddress,
+        string customerName,
+        string customerEmail,
+        string? customerPhone = null,
+        string? notes = null)
     {
         if (items == null || !items.Any())
             throw new ArgumentException("Список товаров не может быть пустым");
@@ -97,11 +105,25 @@ public class OrderService : IOrderService
         if (totalAmount <= 0)
             throw new ArgumentException("Сумма заказа должна быть больше 0");
 
+        if (string.IsNullOrWhiteSpace(shippingAddress))
+            throw new ArgumentException("Адрес доставки обязателен");
+
+        if (string.IsNullOrWhiteSpace(customerName))
+            throw new ArgumentException("Имя клиента обязательно");
+
+        if (string.IsNullOrWhiteSpace(customerEmail))
+            throw new ArgumentException("Email клиента обязателен");
+
         var order = new Order
         {
             UserId = userId,
             Status = "Pending",
             TotalAmount = totalAmount,
+            ShippingAddress = shippingAddress.Trim(),
+            CustomerName = customerName.Trim(),
+            CustomerEmail = customerEmail.Trim(),
+            CustomerPhone = string.IsNullOrWhiteSpace(customerPhone) ? null : customerPhone.Trim(),
+            Notes = string.IsNullOrWhiteSpace(notes) ? null : notes.Trim(),
             Items = new List<OrderItem>()
         };
 
