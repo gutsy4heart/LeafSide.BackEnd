@@ -49,6 +49,13 @@ public class FavoriteRepository : IFavoriteRepository
         return true;
     }
 
+    public async Task<int> RemoveAllByUserIdAsync(Guid userId)
+    {
+        return await _context.Favorites
+            .Where(f => f.UserId == userId)
+            .ExecuteDeleteAsync();
+    }
+
     public async Task<bool> IsFavoriteAsync(Guid userId, Guid bookId)
     {
         return await _context.Favorites
@@ -61,4 +68,3 @@ public class FavoriteRepository : IFavoriteRepository
             .CountAsync(f => f.UserId == userId);
     }
 }
-

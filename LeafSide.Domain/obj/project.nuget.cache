@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "/muXgy9y3x4=",
+  "dgSpecHash": "8o0YWyOEzug=",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Desktop\\LeafSide_.NET\\LeafSide-backend\\LeafSide.Domain\\LeafSide.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/gutsy4heart/Desktop/LeafSide/LeafSide.BackEnd/LeafSide.Domain/LeafSide.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/gutsy4heart/.nuget/packages/microsoft.netcore.app.ref/8.0.26/microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
+    "/Users/gutsy4heart/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.26/microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -43,12 +43,19 @@ public class FavoriteService : IFavoriteService
             CreatedAt = DateTime.UtcNow
         };
 
-        return await _favoriteRepository.AddAsync(favorite);
+        var created = await _favoriteRepository.AddAsync(favorite);
+        created.Book = book;
+        return created;
     }
 
     public async Task<bool> RemoveAsync(Guid userId, Guid bookId)
     {
         return await _favoriteRepository.RemoveAsync(userId, bookId);
+    }
+
+    public async Task<int> RemoveAllByUserIdAsync(Guid userId)
+    {
+        return await _favoriteRepository.RemoveAllByUserIdAsync(userId);
     }
 
     public async Task<bool> IsFavoriteAsync(Guid userId, Guid bookId)
@@ -61,4 +68,3 @@ public class FavoriteService : IFavoriteService
         return await _favoriteRepository.GetCountByUserIdAsync(userId);
     }
 }
-

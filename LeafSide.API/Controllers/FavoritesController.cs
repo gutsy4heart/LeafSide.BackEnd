@@ -26,6 +26,41 @@ public class FavoritesController : ControllerBase
         return Guid.Parse(sub!);
     }
 
+    private static BookResponse? MapBook(LeafSide.Domain.Entities.Book? book)
+    {
+        if (book is null) return null;
+
+        return new BookResponse
+        {
+            Id = book.Id,
+            Title = book.Title,
+            Description = book.Description,
+            Author = book.Author,
+            Genre = book.Genre,
+            Publishing = book.Publishing,
+            Created = book.Created,
+            ImageUrl = book.ImageUrl,
+            Price = book.Price,
+            Isbn = book.Isbn,
+            Language = book.Language,
+            PageCount = book.PageCount,
+            IsAvailable = book.IsAvailable,
+            CreatedAt = book.CreatedAt,
+            UpdatedAt = book.UpdatedAt
+        };
+    }
+
+    private static FavoriteResponse MapFavorite(LeafSide.Domain.Entities.Favorite favorite)
+    {
+        return new FavoriteResponse
+        {
+            Id = favorite.Id,
+            BookId = favorite.BookId,
+            CreatedAt = favorite.CreatedAt,
+            Book = MapBook(favorite.Book)
+        };
+    }
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<FavoriteResponse>>> Get()
     {
@@ -34,30 +69,7 @@ public class FavoritesController : ControllerBase
             var userId = GetUserId();
             var favorites = await _favoriteService.GetByUserIdAsync(userId);
             
-            var response = favorites.Select(f => new FavoriteResponse
-            {
-                Id = f.Id,
-                BookId = f.BookId,
-                CreatedAt = f.CreatedAt,
-                Book = f.Book != null ? new BookResponse
-                {
-                    Id = f.Book.Id,
-                    Title = f.Book.Title,
-                    Description = f.Book.Description,
-                    Author = f.Book.Author,
-                    Genre = f.Book.Genre,
-                    Publishing = f.Book.Publishing,
-                    Created = f.Book.Created,
-                    ImageUrl = f.Book.ImageUrl,
-                    Price = f.Book.Price,
-                    Isbn = f.Book.Isbn,
-                    Language = f.Book.Language,
-                    PageCount = f.Book.PageCount,
-                    IsAvailable = f.Book.IsAvailable,
-                    CreatedAt = f.Book.CreatedAt,
-                    UpdatedAt = f.Book.UpdatedAt
-                } : null
-            });
+            var response = favorites.Select(MapFavorite);
             
             return Ok(response);
         }
@@ -75,14 +87,7 @@ public class FavoritesController : ControllerBase
             var userId = GetUserId();
             var favorite = await _favoriteService.AddAsync(userId, request.BookId);
             
-            var response = new FavoriteResponse
-            {
-                Id = favorite.Id,
-                BookId = favorite.BookId,
-                CreatedAt = favorite.CreatedAt
-            };
-            
-            return Ok(response);
+            return Ok(MapFavorite(favorite));
         }
         catch (InvalidOperationException ex) when (ex.Message.Contains("not found"))
         {
@@ -110,6 +115,21 @@ public class FavoritesController : ControllerBase
                 return NotFound(new { error = "Книга не найдена в избранном" });
             
             return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { error = ex.Message });
+        }
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Clear()
+    {
+        try
+        {
+            var userId = GetUserId();
+            var removedCount = await _favoriteService.RemoveAllByUserIdAsync(userId);
+            return Ok(new { removedCount });
         }
         catch (Exception ex)
         {
@@ -147,4 +167,3 @@ public class FavoritesController : ControllerBase
         }
     }
 }
-

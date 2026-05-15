@@ -1095,39 +1095,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/gutsy4heart/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\LeafSide_.NET\\LeafSide-backend\\LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj",
+      "projectUniqueName": "/Users/gutsy4heart/Desktop/LeafSide/LeafSide.BackEnd/LeafSide.Infrastructure/LeafSide.Infrastructure.csproj",
       "projectName": "LeafSide.Infrastructure",
-      "projectPath": "C:\\Users\\User\\Desktop\\LeafSide_.NET\\LeafSide-backend\\LeafSide.Infrastructure\\LeafSide.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\LeafSide_.NET\\LeafSide-backend\\LeafSide.Infrastructure\\obj\\",
+      "projectPath": "/Users/gutsy4heart/Desktop/LeafSide/LeafSide.BackEnd/LeafSide.Infrastructure/LeafSide.Infrastructure.csproj",
+      "packagesPath": "/Users/gutsy4heart/.nuget/packages/",
+      "outputPath": "/Users/gutsy4heart/Desktop/LeafSide/LeafSide.BackEnd/LeafSide.Infrastructure/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/gutsy4heart/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\User\\Desktop\\LeafSide_.NET\\LeafSide-backend\\LeafSide.Domain\\LeafSide.Domain.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\LeafSide_.NET\\LeafSide-backend\\LeafSide.Domain\\LeafSide.Domain.csproj"
+            "/Users/gutsy4heart/Desktop/LeafSide/LeafSide.BackEnd/LeafSide.Domain/LeafSide.Domain.csproj": {
+              "projectPath": "/Users/gutsy4heart/Desktop/LeafSide/LeafSide.BackEnd/LeafSide.Domain/LeafSide.Domain.csproj"
             }
           }
         }
@@ -1142,7 +1135,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -1176,12 +1169,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.26, 8.0.26]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.26, 8.0.26]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

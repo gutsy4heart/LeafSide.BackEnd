@@ -8,7 +8,7 @@ public interface IFavoriteRepository
     Task<Favorite?> GetByUserAndBookIdAsync(Guid userId, Guid bookId);
     Task<Favorite> AddAsync(Favorite favorite);
     Task<bool> RemoveAsync(Guid userId, Guid bookId);
+    Task<int> RemoveAllByUserIdAsync(Guid userId);
     Task<bool> IsFavoriteAsync(Guid userId, Guid bookId);
     Task<int> GetCountByUserIdAsync(Guid userId);
 }
-
