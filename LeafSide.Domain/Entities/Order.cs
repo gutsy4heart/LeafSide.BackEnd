@@ -15,9 +15,20 @@ public class Order
     
     [Required]
     public decimal TotalAmount { get; set; }
+
+    public decimal DeliveryFee { get; set; }
     
     [Required]
     public string ShippingAddress { get; set; } = string.Empty;
+
+    [Required]
+    public string DeliveryMethod { get; set; } = "standard";
+
+    [Required]
+    public string PaymentMethod { get; set; } = "cashOnDelivery";
+
+    [Required]
+    public string PaymentStatus { get; set; } = "Pending";
     
     [Required]
     public string CustomerName { get; set; } = string.Empty;

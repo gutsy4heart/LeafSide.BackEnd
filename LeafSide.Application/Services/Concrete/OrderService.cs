@@ -55,6 +55,10 @@ public class OrderService : IOrderService
             UserId = userId,
             Status = "Pending",
             ShippingAddress = shippingAddress,
+            DeliveryMethod = "standard",
+            DeliveryFee = 0,
+            PaymentMethod = "cashOnDelivery",
+            PaymentStatus = "Pending",
             CustomerName = customerName,
             CustomerEmail = customerEmail,
             CustomerPhone = customerPhone,
@@ -93,7 +97,10 @@ public class OrderService : IOrderService
         Guid userId,
         List<OrderItemRequest> items,
         decimal totalAmount,
+        decimal deliveryFee,
         string shippingAddress,
+        string deliveryMethod,
+        string paymentMethod,
         string customerName,
         string customerEmail,
         string? customerPhone = null,
@@ -105,8 +112,17 @@ public class OrderService : IOrderService
         if (totalAmount <= 0)
             throw new ArgumentException("Сумма заказа должна быть больше 0");
 
+        if (deliveryFee < 0)
+            throw new ArgumentException("Стоимость доставки не может быть отрицательной");
+
         if (string.IsNullOrWhiteSpace(shippingAddress))
             throw new ArgumentException("Адрес доставки обязателен");
+
+        if (string.IsNullOrWhiteSpace(deliveryMethod))
+            throw new ArgumentException("Способ доставки обязателен");
+
+        if (string.IsNullOrWhiteSpace(paymentMethod))
+            throw new ArgumentException("Способ оплаты обязателен");
 
         if (string.IsNullOrWhiteSpace(customerName))
             throw new ArgumentException("Имя клиента обязательно");
@@ -119,7 +135,11 @@ public class OrderService : IOrderService
             UserId = userId,
             Status = "Pending",
             TotalAmount = totalAmount,
+            DeliveryFee = deliveryFee,
             ShippingAddress = shippingAddress.Trim(),
+            DeliveryMethod = deliveryMethod.Trim(),
+            PaymentMethod = paymentMethod.Trim(),
+            PaymentStatus = "Pending",
             CustomerName = customerName.Trim(),
             CustomerEmail = customerEmail.Trim(),
             CustomerPhone = string.IsNullOrWhiteSpace(customerPhone) ? null : customerPhone.Trim(),
@@ -151,7 +171,7 @@ public class OrderService : IOrderService
         }
 
         // Проверяем, что переданная сумма соответствует рассчитанной
-        if (Math.Abs(calculatedTotal - totalAmount) > 0.01m)
+        if (Math.Abs((calculatedTotal + deliveryFee) - totalAmount) > 0.01m)
             throw new ArgumentException("Переданная сумма не соответствует рассчитанной");
 
         return await _orderRepository.CreateAsync(order);

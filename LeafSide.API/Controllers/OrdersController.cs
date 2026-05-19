@@ -46,7 +46,10 @@ public class OrdersController : ControllerBase
                 userId,
                 orderItems,
                 request.TotalAmount,
+                request.DeliveryFee,
                 request.ShippingAddress,
+                request.DeliveryMethod,
+                request.PaymentMethod,
                 request.CustomerName,
                 request.CustomerEmail,
                 request.CustomerPhone,
@@ -58,7 +61,11 @@ public class OrdersController : ControllerBase
                 UserId = order.UserId,
                 Status = order.Status,
                 TotalAmount = order.TotalAmount,
+                DeliveryFee = order.DeliveryFee,
                 ShippingAddress = order.ShippingAddress,
+                DeliveryMethod = order.DeliveryMethod,
+                PaymentMethod = order.PaymentMethod,
+                PaymentStatus = order.PaymentStatus,
                 CustomerName = order.CustomerName,
                 CustomerEmail = order.CustomerEmail,
                 CustomerPhone = order.CustomerPhone,
@@ -80,7 +87,7 @@ public class OrdersController : ControllerBase
         }
         catch (ArgumentException ex)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(new { error = ex.Message });
         }
         catch (Exception ex)
         {
@@ -107,7 +114,11 @@ public class OrdersController : ControllerBase
                 UserId = o.UserId,
                 Status = o.Status,
                 TotalAmount = o.TotalAmount,
+                DeliveryFee = o.DeliveryFee,
                 ShippingAddress = o.ShippingAddress,
+                DeliveryMethod = o.DeliveryMethod,
+                PaymentMethod = o.PaymentMethod,
+                PaymentStatus = o.PaymentStatus,
                 CustomerName = o.CustomerName,
                 CustomerEmail = o.CustomerEmail,
                 CustomerPhone = o.CustomerPhone,
@@ -155,7 +166,11 @@ public class OrdersController : ControllerBase
                 UserId = order.UserId,
                 Status = order.Status,
                 TotalAmount = order.TotalAmount,
+                DeliveryFee = order.DeliveryFee,
                 ShippingAddress = order.ShippingAddress,
+                DeliveryMethod = order.DeliveryMethod,
+                PaymentMethod = order.PaymentMethod,
+                PaymentStatus = order.PaymentStatus,
                 CustomerName = order.CustomerName,
                 CustomerEmail = order.CustomerEmail,
                 CustomerPhone = order.CustomerPhone,
@@ -204,7 +219,11 @@ public class OrdersController : ControllerBase
                 UserId = order.UserId,
                 Status = order.Status,
                 TotalAmount = order.TotalAmount,
+                DeliveryFee = order.DeliveryFee,
                 ShippingAddress = order.ShippingAddress,
+                DeliveryMethod = order.DeliveryMethod,
+                PaymentMethod = order.PaymentMethod,
+                PaymentStatus = order.PaymentStatus,
                 CustomerName = order.CustomerName,
                 CustomerEmail = order.CustomerEmail,
                 CustomerPhone = order.CustomerPhone,

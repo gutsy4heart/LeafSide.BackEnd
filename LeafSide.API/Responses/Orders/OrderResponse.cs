@@ -6,7 +6,11 @@ public class OrderResponse
     public Guid UserId { get; set; }
     public string Status { get; set; } = string.Empty;
     public decimal TotalAmount { get; set; }
+    public decimal DeliveryFee { get; set; }
     public string? ShippingAddress { get; set; }
+    public string? DeliveryMethod { get; set; }
+    public string? PaymentMethod { get; set; }
+    public string? PaymentStatus { get; set; }
     public string? CustomerName { get; set; }
     public string? CustomerEmail { get; set; }
     public string? CustomerPhone { get; set; }

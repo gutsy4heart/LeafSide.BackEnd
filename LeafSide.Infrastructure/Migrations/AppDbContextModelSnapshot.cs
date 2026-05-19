@@ -168,7 +168,22 @@ namespace LeafSide.Infrastructure.Migrations
                     b.Property<string>("CustomerPhone")
                         .HasColumnType("text");
 
+                    b.Property<decimal>("DeliveryFee")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("DeliveryMethod")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Notes")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ShippingAddress")
